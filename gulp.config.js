@@ -1,6 +1,6 @@
 module.exports = function() {
     var client = './src/client/';
-    var clientApp = client + 'app/';
+    var clientApp = client + 'scripts/';
     var report = './report/';
     var root = './';
     var server = './src/server/';
@@ -51,9 +51,9 @@ module.exports = function() {
         templateCache: {
             file: 'templates.js',
             options: {
-                module: 'app.core',
+                module: 'clock',
                 standAlone: false,
-                root: 'app/'
+                root: 'scripts/'
             }
         },
 
@@ -120,7 +120,7 @@ module.exports = function() {
             files: [].concat(
                 bowerFiles,
                 // config.specHelpers,
-                client + '**/*.modules.js',
+                client + '**/*.module.js',
                 client + '**/*.js',
                 temp + config.templateCache.file,
                 config.serverIntegrationSpecs

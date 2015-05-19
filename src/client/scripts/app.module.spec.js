@@ -3,11 +3,11 @@
 (function() {
     'use strict';
 
-    describe('App', function() {
+    describe('Clock module', function() {
 
         var module;
         beforeEach(function() {
-            module = angular.module('app.core');
+            module = angular.module('clock');
         });
 
         it('should be registered', function() {

@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 console.log('About to crank up node');
 console.log('PORT=' + config.port);
 console.log('NODE_ENV=' + config.environment);

@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var config = require('./config');
-var alarms = require('../routes/alarms')
+var alarms = require('../routes/alarms');
 
 module.exports = function(app) {
 
@@ -38,4 +38,4 @@ module.exports = function(app) {
             error: {}
         });
     });
-}
+};

@@ -129,12 +129,6 @@ gulp.task('build', ['optimize', 'fonts', 'images'], function() {
     notify(msg);
 });
 
-gulp.task('serve-specs', ['build-specs'], function(done) {
-    log('Run the spec runner');
-    serve(true, true);
-    done();
-});
-
 gulp.task('build-specs', ['templatecache'], function() {
     log('Building the spec runner');
 
@@ -232,12 +226,18 @@ gulp.task('bump', function() {
         .pipe(gulp.dest(config.root));
 });
 
-gulp.task('serve-build', ['build'], function() {
+gulp.task('serve', ['inject'], function() {
+    serve(true);
+});
+
+gulp.task('serve:build', ['build'], function() {
     serve(false);
 });
 
-gulp.task('serve-dev', ['inject'], function() {
-    serve(true);
+gulp.task('serve:test', ['build-specs'], function(done) {
+    log('Run the spec runner');
+    serve(true, true);
+    done();
 });
 
 gulp.task('test', ['vet', 'templatecache'], function(done) {

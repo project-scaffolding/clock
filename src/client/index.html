@@ -1,11 +1,8 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js" ng-app="clock">
     <head>
         <meta charset="utf-8">
-        <title>Application</title>
+        <title>Clock</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -22,7 +19,7 @@
         <!-- endbuild -->
     </head>
     <body>
-
+        <div data-ng-view></div>
         <!-- build:js scripts/lib.js-->
         <!-- bower:js -->
         <script src="/bower_components/angular/angular.js"></script>
@@ -33,7 +30,10 @@
  
         <!-- build:js scripts/app.js-->
         <!-- inject:js -->
-        <script src="/src/client/app/app.js"></script>
+        <script src="/src/client/app/app.module.js"></script>
+        <script src="/src/client/app/modules/alarm/alarm.module.js"></script>
+        <script src="/src/client/app/modules/alarm/alarm.controller.js"></script>
+        <script src="/src/client/app/modules/alarm/alarm.routes.js"></script>
         <!-- endinject -->
 
         <!-- inject:templates:js -->
