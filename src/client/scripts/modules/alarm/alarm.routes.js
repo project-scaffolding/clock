@@ -8,8 +8,23 @@
     /* @ngIngect */
     function config($routeProvider) {
         $routeProvider.when('/alarms', {
-            templateUrl: 'app/modules/alarm/alarms.html',
-            controller: 'Alarms as vm'
+            templateUrl: 'scripts/modules/alarm/alarm.list.html',
+            controller: 'AlarmList as vm'
+        });
+
+        $routeProvider.when('/alarms/new', {
+            templateUrl: 'scripts/modules/alarm/alarm.new.html',
+            controller: 'AlarmNew as vm'
+        });
+
+        $routeProvider.when('/alarms/:id/edit', {
+            templateUrl: 'scripts/modules/alarm/alarm.edit.html',
+            controller: 'AlarmEdit as vm'
+        });
+
+        $routeProvider.when('/alarms/:id', {
+            templateUrl: 'scripts/modules/alarm/alarm.show.html',
+            controller: 'AlarmShow as vm'
         });
 
         $routeProvider.otherwise({

@@ -368,6 +368,7 @@ function startTests(singleRun, done) {
     }, karmaCompleted);
 
     function karmaCompleted(karmaResult) {
+        console.log(karmaResult);
         log('Karma completed!');
         if (child) {
             log('Sutting down the child process');

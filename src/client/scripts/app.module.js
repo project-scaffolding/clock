@@ -10,6 +10,7 @@
             // 3-rd Part modules
 
             // Application Modules
+            'clock.services',
             'clock.alarm'
 
         ]);

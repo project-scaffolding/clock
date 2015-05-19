@@ -131,12 +131,12 @@ module.exports = function() {
                 reporters: [
                     {type: 'html', subdir: 'report-html'},
                     {type: 'lcov', subdir: 'report-lcov'},
-                    {type: 'text-summary'},
+                    {type: 'text-summary'}
                 ]
             },
-            preprocesors: {}
+            preprocessors: {}
         };
-        options.preprocesors[clientApp + '**/!(*.spec)+(.js)'] = ['coverage'];
+        options.preprocessors[clientApp + '**/!(*.spec)+(.js)'] = ['coverage'];
         return options;
     }
 };
