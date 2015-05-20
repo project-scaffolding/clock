@@ -13,9 +13,10 @@ router.get('/', function(req, res, next) {
 
 /* GET alarm item */
 router.get('/:id', function(req, res, next) {
-    Alarm.find({_id: req.params.id}).exec().then(function(alarm) {
+    Alarm.findById(req.params.id).exec().then(function(alarm) {
         res.send(alarm);
     }, function(error) {
+        res.status(404);
         res.send(error);
     });
 });

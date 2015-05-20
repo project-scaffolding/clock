@@ -3,12 +3,12 @@
 
     angular
         .module('clock.alarm')
-        .controller('AlarmNew', AlarmNew);
+        .controller('AlarmLabel', AlarmLabel);
 
     /* @ngInject */
-    function AlarmNew() {
+    function AlarmLabel() {
         var vm = this;
-        vm.title = 'Alarm(New)';
+        vm.title = 'Label';
 
         initialize();
 

@@ -1,0 +1,16 @@
+<div class="row header">
+    <div class="col-xs-2 header-button left cursor" ng-click="vm.editAlarms()">Edit</div>
+    <div class="col-xs-8 header-title"><strong>{{vm.title}}</strong></div>
+    <div class="col-xs-2 header-button right cursor" ng-click="vm.addAlarm()"><i class="glyphicon glyphicon-plus"></i></div>
+</div>
+<div class="row alarm" ng-class="{'active': alarm.active}" ng-repeat="alarm in vm.alarms">
+    <div class="col-xs-11">
+        <div class="row">
+            <div class="col-xs-12 alarm-time">{{alarm.hours | alarmNumber}}:{{alarm.minutes | alarmNumber}}</div>
+            <div class="col-xs-12 alarm-label">{{alarm.label}}</div>
+        </div>
+    </div>
+    <div class="col-xs-1">
+        <input ng-model="alarm.active" class="alarm-toggle" type="checkbox">
+    </div>
+</div>

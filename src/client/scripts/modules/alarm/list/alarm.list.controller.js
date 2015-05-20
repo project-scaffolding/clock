@@ -6,10 +6,12 @@
         .controller('AlarmList', AlarmList);
 
     /* @ngInject */
-    function AlarmList(alarmService) {
+    function AlarmList($location, alarmService) {
         var vm = this;
         vm.title = 'Alarms';
         vm.alarms = [];
+        vm.addAlarm = addAlarm;
+        vm.alarmOnClickHandler = alarmOnClickHandler;
 
         initialize();
 
@@ -19,6 +21,15 @@
                 .then(function(alarms) {
                     vm.alarms = alarms;
                 });
+        }
+
+        function addAlarm() {
+            //alarmService.createNewAlarm();
+            $location.path('alarms/new');
+        }
+
+        function alarmOnClickHandler(alarm) {
+            $location.path('alarms/' + alarm._id);
         }
     }
 

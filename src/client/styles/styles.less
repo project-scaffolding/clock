@@ -1,1 +1,74 @@
-body {}
+@header-background-color: #F6F6F7;
+@header-text-color: #000000;
+@header-button-color: #FC3D39;
+@header-border-color: #A7A7AA;
+
+@alarm-background-color: #EFEFF4;
+@alarm-text-color: #8E8E93;
+@alarm-input-color: #E9E9EE; /* input border: #CBCBD0*/
+@alarm-border-color: #C8C7CC;
+
+@alarm-active-background-color: #FFFFFF;
+@alarm-active-text-color: #000000;
+@alarm-active-input-color: #53D769; /* input border: #3FA450*/
+
+@footer-background-color: #FFFFFF;
+@footer-button-color: #929292;
+@footer-active-button-color: #FC3D39;
+@header-text-color: #929292;
+
+.cursor {
+    cursor: pointer;
+}
+
+.header {
+    background: @header-background-color;
+    border-bottom: 1px solid @header-border-color;
+    font-size: 14px;
+}
+
+.header-button {
+    padding: 15px 10px;
+    color: @header-button-color;
+
+    &.right {
+        text-align: right;
+    }
+
+    &.left {
+        text-align: left;
+    }
+}
+
+.header-title {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.alarm {
+    background: @alarm-background-color;
+    border-bottom: 1px solid @alarm-border-color;
+    color: @alarm-text-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.active {
+        background: @alarm-active-background-color;
+        color: @alarm-active-text-color;
+    }
+}
+
+.alarm-time {
+    font-size: 32px;
+    line-height: 32px;
+}
+
+.alarm-label {
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.alarm-toggle {
+    margin: 0;
+}

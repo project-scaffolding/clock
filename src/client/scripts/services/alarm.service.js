@@ -7,16 +7,38 @@
 
     /* @ngInject */
     function alarmService($http) {
-        var api = {
-            getAlarms: getAlarms
+
+        ///////////// Interface /////////////
+
+        var service = {
+            getAlarms: getAlarms,
+            getAlarm: getAlarm,
+            getNewAlarm: getNewAlarm,
+            getEditAlarm: getEditAlarm,
         };
 
-        return api;
+        return service;
+
+        ////////// Implementation //////////
 
         function getAlarms() {
             return $http.get('api/alarms').then(function(res) {
                 return res.data;
             });
+        }
+
+        function getAlarm(id) {
+            return $http.get('api/alarms/' + id).then(function(res) {
+                return res.data;
+            });
+        }
+
+        function getNewAlarm() {
+
+        }
+
+        function getEditAlarm() {
+
         }
     }
 

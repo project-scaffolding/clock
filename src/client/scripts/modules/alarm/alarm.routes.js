@@ -3,32 +3,58 @@
 
     angular
         .module('clock.alarm')
-        .config(config);
+        .config(routesConfig);
 
     /* @ngIngect */
-    function config($routeProvider) {
+    function routesConfig($routeProvider) {
         $routeProvider.when('/alarms', {
-            templateUrl: 'scripts/modules/alarm/alarm.list.html',
+            templateUrl: 'scripts/modules/alarm/list/alarm.list.html',
             controller: 'AlarmList as vm'
         });
 
         $routeProvider.when('/alarms/new', {
-            templateUrl: 'scripts/modules/alarm/alarm.new.html',
+            templateUrl: 'scripts/modules/alarm/new/alarm.new.html',
             controller: 'AlarmNew as vm'
         });
 
+        $routeProvider.when('/alarms/new/repeat', {
+            templateUrl: 'scripts/modules/alarm/repeat/alarm.repeat.html',
+            controller: 'AlarmRepeat as vm'
+        });
+
+        $routeProvider.when('/alarms/new/label', {
+            templateUrl: 'scripts/modules/alarm/label/alarm.label.html',
+            controller: 'AlarmLabel as vm'
+        });
+
+        $routeProvider.when('/alarms/new/sound', {
+            templateUrl: 'scripts/modules/alarm/sound/alarm.sound.html',
+            controller: 'AlarmSound as vm'
+        });
+
         $routeProvider.when('/alarms/:id/edit', {
-            templateUrl: 'scripts/modules/alarm/alarm.edit.html',
+            templateUrl: 'scripts/modules/alarm/edit/alarm.edit.html',
             controller: 'AlarmEdit as vm'
         });
 
-        $routeProvider.when('/alarms/:id', {
-            templateUrl: 'scripts/modules/alarm/alarm.show.html',
-            controller: 'AlarmShow as vm'
+        $routeProvider.when('/alarms/:id/repeat', {
+            templateUrl: 'scripts/modules/alarm/repeat/alarm.repeat.html',
+            controller: 'AlarmRepeat as vm'
         });
 
-        $routeProvider.otherwise({
-            redirectTo: '/alarms'
+        $routeProvider.when('/alarms/:id/label', {
+            templateUrl: 'scripts/modules/alarm/label/alarm.label.html',
+            controller: 'AlarmLabel as vm'
+        });
+
+        $routeProvider.when('/alarms/:id/sound', {
+            templateUrl: 'scripts/modules/alarm/sound/alarm.sound.html',
+            controller: 'AlarmSound as vm'
+        });
+
+        $routeProvider.when('/alarms/:id', {
+            templateUrl: 'scripts/modules/alarm/show/alarm.show.html',
+            controller: 'AlarmShow as vm'
         });
     }
 

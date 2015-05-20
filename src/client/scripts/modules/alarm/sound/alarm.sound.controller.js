@@ -3,12 +3,12 @@
 
     angular
         .module('clock.alarm')
-        .controller('AlarmEdit', AlarmEdit);
+        .controller('AlarmSound', AlarmSound);
 
     /* @ngInject */
-    function AlarmEdit() {
+    function AlarmSound() {
         var vm = this;
-        vm.title = 'Alarm(Edit)';
+        vm.title = 'Sound';
 
         initialize();
 

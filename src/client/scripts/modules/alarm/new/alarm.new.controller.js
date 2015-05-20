@@ -3,16 +3,21 @@
 
     angular
         .module('clock.alarm')
-        .controller('AlarmShow', AlarmShow);
+        .controller('AlarmNew', AlarmNew);
 
     /* @ngInject */
-    function AlarmShow() {
+    function AlarmNew($window) {
         var vm = this;
-        vm.title = 'Alarm(Show)';
+        vm.title = 'Add Alarm';
+        vm.back = back;
 
         initialize();
 
         function initialize() {}
+
+        function back() {
+            $window.history.back();
+        }
     }
 
 }).call(this, angular);

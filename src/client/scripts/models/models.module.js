@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('clock.alarm', ['ngRoute', 'clock.components']);
+        .module('clock.models', []);
 
 }).call(this, angular);

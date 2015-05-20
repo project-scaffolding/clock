@@ -4,11 +4,12 @@
         <meta charset="utf-8">
         <title>Clock</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <!-- build:css styles/lib.css-->
         <!-- bower:css -->
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -19,26 +20,39 @@
         <!-- endbuild -->
     </head>
     <body>
-        <div data-ng-view></div>
+
+        <div class="container-fluid" data-ng-view></div>
+
         <!-- build:js scripts/lib.js-->
         <!-- bower:js -->
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="/bower_components/angular-resource/angular-resource.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
  
         <!-- build:js scripts/app.js-->
         <!-- inject:js -->
         <script src="/src/client/scripts/app.module.js"></script>
-        <script src="/src/client/scripts/services/service.module.js"></script>
+        <script src="/src/client/scripts/models/models.module.js"></script>
+        <script src="/src/client/scripts/services/services.module.js"></script>
         <script src="/src/client/scripts/modules/alarm/alarm.module.js"></script>
+        <script src="/src/client/scripts/modules/components/components.module.js"></script>
+        <script src="/src/client/scripts/app.routes.js"></script>
+        <script src="/src/client/scripts/models/alarm.js"></script>
         <script src="/src/client/scripts/services/alarm.service.js"></script>
-        <script src="/src/client/scripts/modules/alarm/alarm.edit.controller.js"></script>
-        <script src="/src/client/scripts/modules/alarm/alarm.list.controller.js"></script>
-        <script src="/src/client/scripts/modules/alarm/alarm.new.controller.js"></script>
+        <script src="/src/client/scripts/services/sound.service.js"></script>
         <script src="/src/client/scripts/modules/alarm/alarm.routes.js"></script>
-        <script src="/src/client/scripts/modules/alarm/alarm.show.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/edit/alarm.edit.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/label/alarm.label.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/list/alarm.list.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/new/alarm.new.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/repeat/alarm.repeat.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/show/alarm.show.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/sound/alarm.sound.controller.js"></script>
+        <script src="/src/client/scripts/modules/components/filters/alarm.number.filter.js"></script>
         <!-- endinject -->
 
         <!-- inject:templates:js -->
