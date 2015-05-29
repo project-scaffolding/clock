@@ -12,26 +12,6 @@
             controller: 'AlarmList as vm'
         });
 
-        $routeProvider.when('/alarms/new', {
-            templateUrl: 'scripts/modules/alarm/new/alarm.new.html',
-            controller: 'AlarmNew as vm'
-        });
-
-        $routeProvider.when('/alarms/new/repeat', {
-            templateUrl: 'scripts/modules/alarm/repeat/alarm.repeat.html',
-            controller: 'AlarmRepeat as vm'
-        });
-
-        $routeProvider.when('/alarms/new/label', {
-            templateUrl: 'scripts/modules/alarm/label/alarm.label.html',
-            controller: 'AlarmLabel as vm'
-        });
-
-        $routeProvider.when('/alarms/new/sound', {
-            templateUrl: 'scripts/modules/alarm/sound/alarm.sound.html',
-            controller: 'AlarmSound as vm'
-        });
-
         $routeProvider.when('/alarms/:id/edit', {
             templateUrl: 'scripts/modules/alarm/edit/alarm.edit.html',
             controller: 'AlarmEdit as vm'
@@ -52,10 +32,6 @@
             controller: 'AlarmSound as vm'
         });
 
-        $routeProvider.when('/alarms/:id', {
-            templateUrl: 'scripts/modules/alarm/show/alarm.show.html',
-            controller: 'AlarmShow as vm'
-        });
     }
 
 }).call(this, angular);

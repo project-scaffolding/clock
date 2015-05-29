@@ -1,3 +1,7 @@
+@import '../../../bower_components/angularjs-toaster/toaster.css';
+@import '../../../bower_components/bootstrap/less/bootstrap.less';
+@icon-font-path: '../../../bower_components/bootstrap/fonts/';
+
 @header-background-color: #F6F6F7;
 @header-text-color: #000000;
 @header-button-color: #FC3D39;
@@ -17,7 +21,7 @@
 @footer-active-button-color: #FC3D39;
 @header-text-color: #929292;
 
-.cursor {
+.cursor-pointer {
     cursor: pointer;
 }
 
@@ -52,11 +56,60 @@
     color: @alarm-text-color;
     padding-top: 10px;
     padding-bottom: 10px;
+    transition: 0.3s linear all;
 
     &.active {
         background: @alarm-active-background-color;
         color: @alarm-active-text-color;
+        transition: 0.3s linear all;
     }
+
+    &.ng-leave {
+        opacity: 1;
+    }
+
+    &.ng-leave-active {
+        opacity: 0;
+    }
+}
+
+.alarm-remove {
+    padding-left: 15px;
+    padding-right: 0;
+    color: @header-button-color;
+    opacity: 1;
+    transition: 0.3s linear all;
+    .col-xs-1;
+
+    &.ng-enter {
+        opacity: 0;
+        width: 0;
+        padding-left: 0;
+    }
+
+    &.ng-enter-active {
+        opacity: 1;
+        padding-left: 15px;
+        .col-xs-1;
+    }
+
+    &.ng-leave {
+        opacity: 1;
+        padding-left: 15px;
+        .col-xs-1;
+    }
+
+    &.ng-leave-active {
+        opacity: 0;
+        width: 0;
+        padding-left: 0;
+    }
+}
+
+.alarm-body-edit {
+    padding-left: 0;
+    padding-right: 15px;
+    transition: 0.3s linear all;
 }
 
 .alarm-time {
@@ -71,4 +124,8 @@
 
 .alarm-toggle {
     margin: 0;
+}
+
+.alarm-arrow {
+    color: @alarm-text-color;
 }

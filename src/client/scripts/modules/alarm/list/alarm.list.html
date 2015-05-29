@@ -1,16 +1,21 @@
 <div class="row header">
-    <div class="col-xs-2 header-button left cursor" ng-click="vm.editAlarms()">Edit</div>
+    <div class="col-xs-2 header-button left cursor-pointer" ng-click="vm.edit()" ng-if="!vm.editMode">Edit</div>
+    <div class="col-xs-2 header-button left cursor-pointer" ng-click="vm.done()" ng-if="vm.editMode">Done</div>
     <div class="col-xs-8 header-title"><strong>{{vm.title}}</strong></div>
-    <div class="col-xs-2 header-button right cursor" ng-click="vm.addAlarm()"><i class="glyphicon glyphicon-plus"></i></div>
+    <div class="col-xs-2 header-button right cursor-pointer" ng-click="vm.addAlarm()"><i class="glyphicon glyphicon-plus"></i></div>
 </div>
-<div class="row alarm" ng-class="{'active': alarm.active}" ng-repeat="alarm in vm.alarms">
-    <div class="col-xs-11">
+<div class="row alarm" ng-class="{'active': alarm.active, 'cursor-pointer': vm.editMode}" ng-repeat="alarm in vm.alarms track by alarm.id">
+    <div class="col-xs-1 alarm-remove" ng-if="vm.editMode" ng-click="vm.editMode && vm.removeAlarm(alarm)">
+        <span class="glyphicon glyphicon-minus-sign"></span>
+    </div>
+    <div ng-class="{'col-xs-11': !vm.editMode, 'col-xs-10': vm.editMode, 'alarm-body-edit': vm.editMode, 'alarm-body': !vm.editMode}" ng-click="vm.editMode && vm.editAlarm(alarm)">
         <div class="row">
             <div class="col-xs-12 alarm-time">{{alarm.hours | alarmNumber}}:{{alarm.minutes | alarmNumber}}</div>
             <div class="col-xs-12 alarm-label">{{alarm.label}}</div>
         </div>
     </div>
-    <div class="col-xs-1">
-        <input ng-model="alarm.active" class="alarm-toggle" type="checkbox">
+    <div class="col-xs-1" ng-click="vm.editMode && vm.editAlarm(alarm)">
+        <input ng-model="alarm.active" ng-change="vm.activateAlarm(alarm)" ng-if="!vm.editMode" class="alarm-toggle" type="checkbox">
+        <div ng-if="vm.editMode" class="alarm-arrow"><span class="glyphicon glyphicon-chevron-right"></span></div>
     </div>
 </div>

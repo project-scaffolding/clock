@@ -6,7 +6,7 @@
         .factory('Alarm', AlarmModel);
 
     /* @ngInject */
-    function AlarmModel() {
+    function AlarmModel($q) {
 
         function Alarm() {
             this.id = null;
@@ -15,8 +15,47 @@
             this.label = 'Alarm';
             this.active = true;
             this.snooze = true;
+        }
 
-            // TODO: formatted values for presentation layer
+        Alarm.validation = {
+            hours: {
+                presence: true,
+                numericality: {
+                    greaterThanOrEqualTo: 0,
+                    lessThan: 24
+                }
+            },
+            minutes: {
+                presence: true,
+                numericality: {
+                    greaterThanOrEqualTo: 0,
+                    lessThan: 60
+                }
+            },
+            label: {
+                presence: true
+            }
+        }
+
+        Alarm.createAlarm = function(obj) {
+            var alarm = new Alarm();
+            alarm.id = obj._id;
+            alarm.hours = obj.hours;
+            alarm.minutes = obj.minutes;
+            alarm.label = obj.label;
+            alarm.active = obj.active;
+            alarm.snooze = obj.snooze;
+
+            return $q.when(alarm);
+        }
+
+        Alarm.createNewAlarm = function() {
+            var date = new Date();
+            var alarm = new Alarm();
+            alarm.hours = date.getHours();
+            alarm.minutes = date.getMinutes();
+
+            return $q.when(alarm);
         }
 
         return Alarm;

@@ -1,4 +1,4 @@
-(function(angular) {
+(function(angular, validate) {
     'use strict';
 
     angular
@@ -6,16 +6,20 @@
             // Angular Modules
             'ngRoute',
             'ngResource',
+            'ngAnimate',
 
             // 3-rd Part modules
+            'toaster',
 
             // Application Modules
             'clock.components',
+            'clock.dao',
             'clock.models',
             'clock.services',
             'clock.alarm'
         ])
-        .config(routesConfig);
+        .config(routesConfig)
+        .value('validate', validate);
 
     /* @ngIngect */
     function routesConfig($routeProvider) {
@@ -24,4 +28,4 @@
         });
     }
 
-}).call(this, angular);
+}).call(this, angular, validate);

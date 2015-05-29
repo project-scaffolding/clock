@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('clock.services', []);
+        .module('clock.dao', ['ngResource']);
 
 }).call(this, angular);

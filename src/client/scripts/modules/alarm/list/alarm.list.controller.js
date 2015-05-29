@@ -11,7 +11,12 @@
         vm.title = 'Alarms';
         vm.alarms = [];
         vm.addAlarm = addAlarm;
-        vm.alarmOnClickHandler = alarmOnClickHandler;
+        vm.editMode = false;
+        vm.edit = edit;
+        vm.activateAlarm = activateAlarm;
+        vm.editAlarm = editAlarm;
+        vm.removeAlarm = removeAlarm;
+        vm.done = done;
 
         initialize();
 
@@ -24,12 +29,33 @@
         }
 
         function addAlarm() {
-            //alarmService.createNewAlarm();
-            $location.path('alarms/new');
+            $location.path('alarms/new/edit');
         }
 
-        function alarmOnClickHandler(alarm) {
-            $location.path('alarms/' + alarm._id);
+        function activateAlarm(alarm) {
+            alarmService.activateAlarm(alarm)
+        }
+
+        function editAlarm(alarm) {
+            $location.path('alarms/' + alarm.id + '/edit');
+        }
+
+        function removeAlarm(alarm) {
+            alarmService
+                .removeAlarm(alarm.id)
+                .then(function() {
+                    vm.alarms = vm.alarms.filter(function(model) {
+                        return model.id !== alarm.id;
+                    });
+                });
+        }
+
+        function edit() {
+            vm.editMode = true;
+        }
+
+        function done() {
+            vm.editMode = false;
         }
     }
 
