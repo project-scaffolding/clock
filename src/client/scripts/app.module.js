@@ -13,13 +13,12 @@
 
             // Application Modules
             'clock.components',
+            'clock.services',
             'clock.dao',
             'clock.models',
-            'clock.services',
             'clock.alarm'
         ])
-        .config(routesConfig)
-        .value('validate', validate);
+        .config(routesConfig);
 
     /* @ngIngect */
     function routesConfig($routeProvider) {
@@ -28,4 +27,4 @@
         });
     }
 
-}).call(this, angular, validate);
+}).call(this, angular);

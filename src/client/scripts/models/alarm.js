@@ -17,7 +17,7 @@
             this.snooze = true;
         }
 
-        Alarm.validation = {
+        Alarm.validates = {
             hours: {
                 presence: true,
                 numericality: {
@@ -39,7 +39,7 @@
 
         Alarm.createAlarm = function(obj) {
             var alarm = new Alarm();
-            alarm.id = obj._id;
+            alarm.id = obj.id;
             alarm.hours = obj.hours;
             alarm.minutes = obj.minutes;
             alarm.label = obj.label;

@@ -6,73 +6,89 @@
         .factory('alarmDao', alarmDao);
 
     /* @ngInject */
-    function alarmDao($q, $http, Alarm) {
+    function alarmDao($q, $resource, Alarm, alarmParser, validationService) {
+        // Data Layer Frame
+        // - Exception Management (HTTP errors)
+        // - Queries
+        // - Transactions
+        // - Validation
 
-        var newAlarm;
+        var editableAlarm;
+        //////////////////////////////
+        ///////// Interface //////////
+        //////////////////////////////
         var dao = {
-            list: list,
-            get: get,
-            getNew: getNew,
-            removeNew: removeNew,
-            create: create,
-            update: update,
-            remove: remove
+            getAllAlarms: getAllAlarms,
+            getAlarm: getAlarm,
+            getEditableAlarm: getEditableAlarm,
+            setEditableAlarm: setEditableAlarm,
+            saveAlarm: saveAlarm,
+            removeAlarm: removeAlarm
         };
 
         return dao;
 
-        function list() {
-            var options = {
-                method: 'GET',
-                url: getURL()
-            };
-            return sync(options).then(addAll);
+        //////////////////////////////
+        /////// Implementation ///////
+        //////////////////////////////
+        function getAllAlarms() {
+            return resource()
+                .list()
+                .$promise
+                .then(addAll);
         }
 
-        function get(id) {
-            var options = {
-                method: 'GET',
-                url: getURL(id)
-            };
-            return sync(options).then(addOne);
+        function getAlarm(id) {
+            return resource()
+                .get({id: id})
+                .$promise
+                .then(addOne);
         }
 
-        function getNew() {
-            if (!newAlarm) {
-                newAlarm = Alarm.createNewAlarm();
+        function getEditableAlarm(id) {
+            if (editableAlarm) {
+                return $q.when(editableAlarm);
+            } else {
+                if (id === 'new') {
+                    return $q.when(Alarm.createNewAlarm()).then(setEditableAlarm);
+                } else {
+                    return $q.when(getAlarm(id)).then(setEditableAlarm);
+                }
             }
-            return $q.when(newAlarm);
         }
 
-        function removeNew() {
-            newAlarm = null;
-            return $q.when(newAlarm);
+        function setEditableAlarm(alarm) {
+            editableAlarm = alarm;
+            return alarm;
         }
 
-        function create(data) {
-            var options = {
-                method: 'POST',
-                url: getURL(),
-                data: data
-            };
-            return sync(options);
+        function saveAlarm(alarm) {
+            var save = alarm.id ? updateAlarm : createAlarm;
+
+            return validationService
+                .validate(alarm, Alarm.validates)
+                .then(save);
         }
 
-        function update(id, data) {
-            var options = {
-                method: 'PUT',
-                url: getURL(id),
-                data: data
-            };
-            return sync(options);
+        function removeAlarm(id) {
+            return resource()
+                .remove({id: id})
+                .$promise;
         }
 
-        function remove(id) {
-            var options = {
-                method: 'DELETE',
-                url: getURL(id)
-            };
-            return sync(options);
+        //////////////////////////////
+        ///////// Private ////////////
+        //////////////////////////////
+        function createAlarm(alarm) {
+            return resource()
+                .create(alarm)
+                .$promise;
+        }
+
+        function updateAlarm(alarm) {
+            return resource()
+                .update({id: alarm.id}, alarm)
+                .$promise;
         }
 
         function addAll(alarms) {
@@ -81,25 +97,27 @@
         }
 
         function addOne(alarm) {
-            return Alarm.createAlarm(alarm);
+            return $q.when(alarm)
+                .then(alarmParser.parse)
+                .then(Alarm.createAlarm);
         }
 
-        function sync(options) {
-            return $http(options).then(parseResponse);
-        }
-
-        function parseResponse(res) {
-            return res.data;
-        }
-
-        function getURL(id) {
-            var url;
-            if (id) {
-                url = 'api/alarms/' + id;
-            } else {
-                url = 'api/alarms';
-            }
-            return url;
+        function resource() {
+            return $resource('api/alarms/:id', {}, {
+                list: {
+                    isArray: true,
+                    method: 'GET'
+                },
+                create: {
+                    method: 'POST'
+                },
+                update: {
+                    method: 'PUT'
+                },
+                remove: {
+                    method: 'DELETE'
+                }
+            });
         }
     }
 

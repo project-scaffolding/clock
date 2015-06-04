@@ -13,7 +13,25 @@
         <input type="minutes" class="form-control" id="hours" ng-model="vm.alarm.minutes">
     </div>
 </div>
+
+<div class="row cursor-pointer" ng-click="vm.repeat(vm.alarm)">
+    <div class="col-xs-8">Repeat</div>
+    <div class="col-xs-3 align-right">Never</div>
+    <div class="col-xs-1">
+        <div><span class="glyphicon glyphicon-chevron-right"></span></div>
+    </div>
+</div>
 <div class="row cursor-pointer" ng-click="vm.label(vm.alarm)">
-    <div class="col-xs-9">Label</div>
-    <div class="col-xs-3">{{vm.alarm.label}}</div>
+    <div class="col-xs-8">Label</div>
+    <div class="col-xs-3 align-right">{{vm.alarm.label}}</div>
+    <div class="col-xs-1">
+        <div><span class="glyphicon glyphicon-chevron-right"></span></div>
+    </div>
+</div>
+<div class="row cursor-pointer" ng-click="vm.sound(vm.alarm)">
+    <div class="col-xs-8">Sound</div>
+    <div class="col-xs-3 align-right">Presto</div>
+    <div class="col-xs-1">
+        <div><span class="glyphicon glyphicon-chevron-right"></span></div>
+    </div>
 </div>

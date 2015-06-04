@@ -1,19 +1,18 @@
-(function(angular) {
+(function(angular, validate) {
     'use strict';
 
     angular
         .module('clock.services')
-        .factory('validateService', validateService);
+        .factory('validationService', validationService);
 
     /* @ngInject */
-    function validateService($q, validate) {
+    function validationService($q) {
 
         validate.Promise = $q;
 
         return {
             validate: validate.async
         };
-
     }
 
-}).call(this, angular);
+}).call(this, angular, validate);
