@@ -1,3 +1,4 @@
+/*global validate*/
 (function(angular, validate) {
     'use strict';
 

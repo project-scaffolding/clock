@@ -23,7 +23,7 @@
                 })
                 .catch(function() {
                     $location.path('alarms');
-                });  
+                });
         }
 
         function back() {

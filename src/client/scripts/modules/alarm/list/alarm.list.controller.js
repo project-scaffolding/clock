@@ -32,7 +32,7 @@
         }
 
         function activateAlarm(alarm) {
-            Alarm.save(alarm)
+            Alarm.save(alarm);
         }
 
         function editAlarm(alarm) {

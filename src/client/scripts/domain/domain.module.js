@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('clock.domain', []);
+        .module('clock.domain', ['clock.services', 'clock.resource']);
 
 }).call(this, angular);

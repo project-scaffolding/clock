@@ -57,7 +57,7 @@
         }
 
         function createAlarms(alarms) {
-            var alarms = alarms.map(AlarmEntity.createAlarm);
+            alarms = alarms.map(AlarmEntity.createAlarm);
             return $q.all(alarms);
         }
 

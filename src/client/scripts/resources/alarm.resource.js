@@ -44,7 +44,7 @@
         }
 
         function remove(id) {
-            resource().remove({id: id}).$promise;
+            return resource().remove({id: id}).$promise;
         }
 
         ///////// Private ////////////

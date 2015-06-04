@@ -35,7 +35,7 @@
             label: {
                 presence: true
             }
-        }
+        };
 
         AlarmEntity.createAlarm = function(obj) {
             var alarm = new AlarmEntity();
@@ -47,7 +47,7 @@
             alarm.snooze = obj.snooze;
 
             return $q.when(alarm);
-        }
+        };
 
         AlarmEntity.createNewAlarm = function() {
             var date = new Date();
@@ -56,7 +56,7 @@
             alarm.minutes = date.getMinutes();
 
             return $q.when(alarm);
-        }
+        };
 
         return AlarmEntity;
 

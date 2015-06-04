@@ -24,7 +24,7 @@
 
             Object.keys(data).forEach(function(key) {
                 var value = data[key];
-                var key = mapper[key] || key;
+                key = mapper[key] || key;
                 alarm[key] = value;
             });
 

@@ -27,7 +27,7 @@
                 })
                 .catch(function() {
                     $location.path('alarms');
-                });                
+                });
         }
 
         function repeat(alarm) {
@@ -49,7 +49,7 @@
         function save(alarm) {
             Alarm.save(alarm)
                 .then(goBack)
-                .catch(errrorHandler)
+                .catch(errrorHandler);
         }
 
         function goBack() {
@@ -60,9 +60,11 @@
         function errrorHandler(error) {
             if (error.name === 'ValidationException') {
                 for (var property in error.message) {
-                    error.message[property].forEach(function(msg) {
-                        toaster.pop('error', 'Validation Error', msg);
-                    });
+                    if (error.message.hasOwnProperty(property)) {
+                        error.message[property].forEach(function(msg) {
+                            toaster.pop('error', 'Validation Error', msg);
+                        });
+                    }
                 }
             }
         }
