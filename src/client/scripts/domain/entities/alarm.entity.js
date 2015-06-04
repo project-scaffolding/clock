@@ -2,13 +2,13 @@
     'use strict';
 
     angular
-        .module('clock.models')
-        .factory('Alarm', AlarmModel);
+        .module('clock.domain')
+        .factory('AlarmEntity', AlarmEntityProvider);
 
     /* @ngInject */
-    function AlarmModel($q) {
+    function AlarmEntityProvider($q) {
 
-        function Alarm() {
+        function AlarmEntity() {
             this.id = null;
             this.hours = 0;
             this.minutes = 0;
@@ -17,7 +17,7 @@
             this.snooze = true;
         }
 
-        Alarm.validates = {
+        AlarmEntity.validates = {
             hours: {
                 presence: true,
                 numericality: {
@@ -37,8 +37,8 @@
             }
         }
 
-        Alarm.createAlarm = function(obj) {
-            var alarm = new Alarm();
+        AlarmEntity.createAlarm = function(obj) {
+            var alarm = new AlarmEntity();
             alarm.id = obj.id;
             alarm.hours = obj.hours;
             alarm.minutes = obj.minutes;
@@ -49,16 +49,16 @@
             return $q.when(alarm);
         }
 
-        Alarm.createNewAlarm = function() {
+        AlarmEntity.createNewAlarm = function() {
             var date = new Date();
-            var alarm = new Alarm();
+            var alarm = new AlarmEntity();
             alarm.hours = date.getHours();
             alarm.minutes = date.getMinutes();
 
             return $q.when(alarm);
         }
 
-        return Alarm;
+        return AlarmEntity;
 
     }
 

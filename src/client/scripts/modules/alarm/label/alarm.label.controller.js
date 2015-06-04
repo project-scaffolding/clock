@@ -6,7 +6,7 @@
         .controller('AlarmLabel', AlarmLabel);
 
     /* @ngInject */
-    function AlarmLabel($location, $routeParams, $window, alarmDao) {
+    function AlarmLabel($location, $routeParams, $window, Alarm) {
         var vm = this;
         vm.title = 'Label';
         vm.back = back;
@@ -17,8 +17,7 @@
 
         function initialize() {
             var id = $routeParams.id;
-            alarmDao
-                .getEditableAlarm(id)
+            Alarm.get(id)
                 .then(function(alarm) {
                     vm.alarm = alarm;
                 })
@@ -33,7 +32,7 @@
 
         function changeLabel(label) {
             vm.alarm.label = label;
-            alarmDao.setEditableAlarm(vm.alarm);
+            Alarm.setEditableAlarm(vm.alarm);
         }
     }
 

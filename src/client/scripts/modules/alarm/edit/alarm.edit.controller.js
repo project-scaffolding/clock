@@ -6,7 +6,7 @@
         .controller('AlarmEdit', AlarmEdit);
 
     /* @ngInject */
-    function AlarmEdit($location, $routeParams, $window, alarmDao, toaster) {
+    function AlarmEdit($location, $routeParams, $window, Alarm, toaster) {
         var vm = this;
         vm.title = '';
         vm.alarm = {};
@@ -21,8 +21,7 @@
         function initialize() {
             var id = $routeParams.id;
             vm.title = id === 'new' ? 'Add Alarm' : 'Edit Alarm';
-            alarmDao
-                .getEditableAlarm(id)
+            Alarm.get(id)
                 .then(function(alarm) {
                     vm.alarm = alarm;
                 })
@@ -48,14 +47,13 @@
         }
 
         function save(alarm) {
-            alarmDao
-                .saveAlarm(alarm)
+            Alarm.save(alarm)
                 .then(goBack)
                 .catch(errrorHandler)
         }
 
         function goBack() {
-            alarmDao.setEditableAlarm(null);
+            Alarm.setEditableAlarm(null);
             $window.history.back();
         }
 

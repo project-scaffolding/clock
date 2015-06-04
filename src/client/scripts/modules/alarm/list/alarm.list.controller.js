@@ -6,7 +6,7 @@
         .controller('AlarmList', AlarmList);
 
     /* @ngInject */
-    function AlarmList($location, alarmDao) {
+    function AlarmList($location, Alarm) {
         var vm = this;
         vm.title = 'Alarms';
         vm.alarms = [];
@@ -21,33 +21,31 @@
         initialize();
 
         function initialize() {
-            alarmDao
-                .getAllAlarms()
-                .then(function(alarms) {
-                    vm.alarms = alarms;
-                });
+            Alarm.all().then(function(alarms) {
+                vm.alarms = alarms;
+            });
         }
 
         function addAlarm() {
-            alarmDao.setEditableAlarm(null);
+            Alarm.setEditableAlarm(null);
             $location.path('alarms/new/edit');
         }
 
         function activateAlarm(alarm) {
-            alarmDao.saveAlarm(alarm)
+            Alarm.save(alarm)
         }
 
         function editAlarm(alarm) {
-            alarmDao.setEditableAlarm(null);
+            Alarm.setEditableAlarm(null);
             $location.path('alarms/' + alarm.id + '/edit');
         }
 
         function removeAlarm(alarm) {
-            alarmDao
-                .removeAlarm(alarm.id)
-                .then(function() {
-                    vm.alarms = vm.alarms.filter(function(model) {
-                        return model.id !== alarm.id;
+            Alarm.remove(alarm.id)
+                .then(Alarm.all)
+                .then(function(alarms) {
+                    vm.alarms = alarms.filter(function(item) {
+                        return item.id !== alarm.id;
                     });
                 });
         }

@@ -12,10 +12,10 @@
             'toaster',
 
             // Application Modules
-            'clock.components',
             'clock.services',
-            'clock.dao',
-            'clock.models',
+            'clock.resource',
+            'clock.domain',
+            'clock.components',
             'clock.alarm'
         ])
         .config(routesConfig);

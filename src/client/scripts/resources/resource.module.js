@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('clock.dao', [
+        .module('clock.resource', [
             'ngResource',
             'clock.services'
         ]);
