@@ -7,6 +7,7 @@ var alarmSchema = new Schema({
     label: {type: String, default: 'Alarm'},
     snooze: {type: Boolean, default: true},
     active: {type: Boolean, default: true},
+    repeats: {type: Array, default: []},
     createdOn: {type: Date, default: Date.now}
 });
 

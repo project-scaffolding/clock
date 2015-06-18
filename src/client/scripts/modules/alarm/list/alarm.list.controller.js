@@ -27,7 +27,7 @@
         }
 
         function addAlarm() {
-            Alarm.setEditableAlarm(null);
+            Alarm.removeEditableAlarm();
             $location.path('alarms/new/edit');
         }
 
@@ -36,16 +36,16 @@
         }
 
         function editAlarm(alarm) {
-            Alarm.setEditableAlarm(null);
+            Alarm.removeEditableAlarm();
             $location.path('alarms/' + alarm.id + '/edit');
         }
 
         function removeAlarm(alarm) {
-            Alarm.remove(alarm.id)
-                .then(Alarm.all)
-                .then(function(alarms) {
-                    vm.alarms = alarms.filter(function(item) {
-                        return item.id !== alarm.id;
+            return Alarm
+                .remove(alarm.id)
+                .then(function(id) {
+                    vm.alarms = vm.alarms.filter(function(alarm) {
+                        return alarm.id !== id;
                     });
                 });
         }

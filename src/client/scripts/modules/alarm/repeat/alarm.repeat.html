@@ -1,1 +1,12 @@
-<h1>{{vm.title}}</h1>
+<div class="row header">
+    <div class="col-xs-2 header-button left cursor-pointer" ng-click="vm.back()">Back</div>
+    <div class="col-xs-8 header-title"><strong>{{vm.title}}</strong></div>
+    <div class="col-xs-2"></div>
+</div>
+<div class="row" ng-repeat="repeat in vm.repeats track by repeat.id">
+
+    <div class="col-xs-1">
+        <input ng-model="repeat.active" ng-change="vm.changeRepeat()" type="checkbox">
+    </div>
+    <div class="col-xs-11">{{repeat.name}}</div>
+</div>

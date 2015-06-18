@@ -13,7 +13,7 @@
 
             // Application Modules
             'clock.services',
-            'clock.resource',
+            'clock.resources',
             'clock.domain',
             'clock.components',
             'clock.alarm'

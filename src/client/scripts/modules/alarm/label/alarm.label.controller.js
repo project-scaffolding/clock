@@ -17,7 +17,7 @@
 
         function initialize() {
             var id = $routeParams.id;
-            Alarm.get(id)
+            Alarm.find(id)
                 .then(function(alarm) {
                     vm.alarm = alarm;
                 })
@@ -32,7 +32,7 @@
 
         function changeLabel(label) {
             vm.alarm.label = label;
-            Alarm.setEditableAlarm(vm.alarm);
+            console.log('Alarm.setEditableAlarm(vm.alarm);');
         }
     }
 

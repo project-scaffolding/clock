@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('clock.resource')
+        .module('clock.resources')
         .factory('alarmParser', alarmParser);
 
     /* @ngInject */

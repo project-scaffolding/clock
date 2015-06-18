@@ -11,6 +11,7 @@
 
         beforeEach(inject(function($injector) {
             this.Alarm = $injector.get('Alarm');
+            this.Repeat = $injector.get('Repeat');
             this.alarmResource = $injector.get('alarmResource');
             this.$rootScope = $injector.get('$rootScope');
 
@@ -29,6 +30,12 @@
             sinon.stub(this.alarmResource, 'create', $q.when);
             sinon.stub(this.alarmResource, 'update', $q.when);
             sinon.stub(this.alarmResource, 'remove', $q.when);
+            sinon.stub(this.Repeat, 'select', function() {
+                var repeats = getRepeatsMock().map(function(repeat) {
+                    return $injector.get('RepeatEntity').createRepeat(repeat);
+                });
+                return $q.all(repeats);
+            });
         }));
 
         afterEach(function() {
@@ -37,6 +44,7 @@
             this.alarmResource.create.restore();
             this.alarmResource.update.restore();
             this.alarmResource.remove.restore();
+            this.Repeat.select.restore();
         });
 
         describe('all', function() {
@@ -49,9 +57,9 @@
             });
         });
 
-        describe('get', function() {
+        describe('find', function() {
             it('should find alarm by id', function(done) {
-                this.Alarm.get(1111).then(function(alarm) {
+                this.Alarm.find(1111).then(function(alarm) {
                     expect(alarm.id).to.equal(1111);
                     expect(alarm.hours).to.equal(9);
                     expect(alarm.label).to.equal('Notify me!');
@@ -61,7 +69,7 @@
             });
 
             it('should create new alarm if id = `new`', function(done) {
-                this.Alarm.get('new').then(function(alarm) {
+                this.Alarm.find('new').then(function(alarm) {
                     expect(alarm.id).to.equal(null);
                     expect(alarm.label).to.equal('Alarm');
                     done();
@@ -71,7 +79,7 @@
 
             it('should return cached alarm', function(done) {
                 var self = this;
-                this.Alarm.get(2222)
+                this.Alarm.find(2222)
                     .then(function(alarm) {
                         // Change label
                         alarm.label = 'New Label';
@@ -80,7 +88,7 @@
                     .then(this.Alarm.setEditableAlarm)
                     .then(function(a) {
                         // Get the same alarm
-                        return self.Alarm.get(2222);
+                        return self.Alarm.find(2222);
                     })
                     .then(function(alarm) {
                         // Returned Alarm shpuld be from cache
@@ -93,10 +101,22 @@
         });
 
         describe('save', function() {
-            it('should create new alarm if no ID', function(done) {
-                var alarm = {id: null};
+            beforeEach(function() {
+                this.alarm = {
+                    hours: 0,
+                    minutes: 0,
+                    label: 'Alarm',
+                    active: true,
+                    snooze: true,
+                    repeats: [],
+                    soundId: null
+                };
+            });
+
+            it('should create new alarm if no ID ', function(done) {
+                this.alarm.id = null;
                 var self = this;
-                this.Alarm.save(alarm).then(function() {
+                this.Alarm.save(this.alarm).then(function() {
                     expect(self.alarmResource.create).to.have.been.called;
                     done();
                 });
@@ -104,9 +124,9 @@
             });
 
             it('should update alarm', function(done) {
-                var alarm = {id: 111};
+                this.alarm.id = 111;
                 var self = this;
-                this.Alarm.save(alarm).then(function() {
+                this.Alarm.save(this.alarm).then(function() {
                     expect(self.alarmResource.update).to.have.been.called;
                     done();
                 });
@@ -167,6 +187,40 @@
                     label: 'Notify me!',
                     active: true,
                     snooze: true
+                }
+            ];
+        }
+
+        function getRepeatsMock() {
+            return [
+                {
+                    id: 111,
+                    name: 'Every Monday',
+                    weekDay: 1
+                }, {
+                    id: 222,
+                    name: 'Every Tuesday',
+                    weekDay: 2
+                }, {
+                    id: 333,
+                    name: 'Every Wednesday',
+                    weekDay: 3
+                }, {
+                    id: 444,
+                    name: 'Every Thursday',
+                    weekDay: 4
+                }, {
+                    id: 555,
+                    name: 'Every Friday',
+                    weekDay: 5
+                }, {
+                    id: 666,
+                    name: 'Every Saturday',
+                    weekDay: 6
+                }, {
+                    id: 777,
+                    name: 'Every Sunday',
+                    weekDay: 7
                 }
             ];
         }

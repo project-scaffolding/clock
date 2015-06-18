@@ -15,7 +15,7 @@
     <body>
 
         <div class="container-fluid" data-ng-view></div>
-        <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'time-out': 10000, 'prevent-duplicates': true}"></toaster-container>
+        <toaster-container toaster-options="{'close-button': true, 'position-class': 'toast-bottom-right', 'time-out': 5000, 'prevent-duplicates': true}"></toaster-container>
 
         <!-- build:js scripts/lib.js-->
         <!-- bower:js -->
@@ -40,17 +40,20 @@
         <script src="/src/client/scripts/modules/alarm/alarm.module.js"></script>
         <script src="/src/client/scripts/app.routes.js"></script>
         <script src="/src/client/scripts/domain/alarm.js"></script>
+        <script src="/src/client/scripts/domain/repeat.js"></script>
         <script src="/src/client/scripts/resources/alarm.resource.js"></script>
+        <script src="/src/client/scripts/resources/repeat.resource.js"></script>
         <script src="/src/client/scripts/services/validation.service.js"></script>
         <script src="/src/client/scripts/domain/entities/alarm.entity.js"></script>
+        <script src="/src/client/scripts/domain/entities/repeat.entity.js"></script>
         <script src="/src/client/scripts/modules/alarm/alarm.routes.js"></script>
         <script src="/src/client/scripts/resources/parsers/alarm-parser.js"></script>
         <script src="/src/client/scripts/modules/components/filters/alarm.number.filter.js"></script>
-        <script src="/src/client/scripts/modules/alarm/edit/alarm.edit.controller.js"></script>
-        <script src="/src/client/scripts/modules/alarm/label/alarm.label.controller.js"></script>
-        <script src="/src/client/scripts/modules/alarm/list/alarm.list.controller.js"></script>
-        <script src="/src/client/scripts/modules/alarm/repeat/alarm.repeat.controller.js"></script>
         <script src="/src/client/scripts/modules/alarm/sound/alarm.sound.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/edit/alarm.edit.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/repeat/alarm.repeat.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/list/alarm.list.controller.js"></script>
+        <script src="/src/client/scripts/modules/alarm/label/alarm.label.controller.js"></script>
         <!-- endinject -->
 
         <!-- inject:templates:js -->

@@ -21,7 +21,7 @@
         function initialize() {
             var id = $routeParams.id;
             vm.title = id === 'new' ? 'Add Alarm' : 'Edit Alarm';
-            Alarm.get(id)
+            Alarm.find(id)
                 .then(function(alarm) {
                     vm.alarm = alarm;
                 })
@@ -53,7 +53,7 @@
         }
 
         function goBack() {
-            Alarm.setEditableAlarm(null);
+            Alarm.removeEditableAlarm();
             $window.history.back();
         }
 

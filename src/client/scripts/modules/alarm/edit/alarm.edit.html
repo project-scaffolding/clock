@@ -1,7 +1,7 @@
 <div class="row header">
     <div class="col-xs-2 header-button left cursor-pointer" ng-click="vm.cancel()">Cancel</div>
     <div class="col-xs-8 header-title"><strong>{{vm.title}}</strong></div>
-    <div class="col-xs-2 header-button right cursor-pointer" ng-click="vm.save(vm.alarm)"><strong>Save</strong></i></div>
+    <div class="col-xs-2 header-button right cursor-pointer" ng-click="vm.save(vm.alarm)"><strong>Save</strong></div>
 </div>
 <div class="row">
     <div class="form-group">
@@ -15,22 +15,22 @@
 </div>
 
 <div class="row cursor-pointer" ng-click="vm.repeat(vm.alarm)">
-    <div class="col-xs-8">Repeat</div>
-    <div class="col-xs-3 align-right">Never</div>
+    <div class="col-xs-4">Repeat</div>
+    <div class="col-xs-7 align-right">{{vm.alarm.repeatLabel}}</div>
     <div class="col-xs-1">
         <div><span class="glyphicon glyphicon-chevron-right"></span></div>
     </div>
 </div>
 <div class="row cursor-pointer" ng-click="vm.label(vm.alarm)">
-    <div class="col-xs-8">Label</div>
-    <div class="col-xs-3 align-right">{{vm.alarm.label}}</div>
+    <div class="col-xs-4">Label</div>
+    <div class="col-xs-7 align-right">{{vm.alarm.label}}</div>
     <div class="col-xs-1">
         <div><span class="glyphicon glyphicon-chevron-right"></span></div>
     </div>
 </div>
 <div class="row cursor-pointer" ng-click="vm.sound(vm.alarm)">
-    <div class="col-xs-8">Sound</div>
-    <div class="col-xs-3 align-right">Presto</div>
+    <div class="col-xs-4">Sound</div>
+    <div class="col-xs-7 align-right">Presto</div>
     <div class="col-xs-1">
         <div><span class="glyphicon glyphicon-chevron-right"></span></div>
     </div>
