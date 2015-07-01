@@ -13,18 +13,11 @@
 
             // Application Modules
             'clock.services',
-            'clock.resources',
+            'clock.infrastructure',
             'clock.domain',
             'clock.components',
-            'clock.alarm'
-        ])
-        .config(routesConfig);
-
-    /* @ngIngect */
-    function routesConfig($routeProvider) {
-        $routeProvider.otherwise({
-            redirectTo: '/alarms'
-        });
-    }
+            // 'clock.alarm',
+            'clock.timer'
+        ]);
 
 }).call(this, angular);

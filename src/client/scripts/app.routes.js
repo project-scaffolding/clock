@@ -8,7 +8,7 @@
     /* @ngIngect */
     function routesConfig($routeProvider) {
         $routeProvider.otherwise({
-            redirectTo: '/alarms'
+            redirectTo: '/timer'
         });
     }
 
