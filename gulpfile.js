@@ -126,7 +126,7 @@ gulp.task('build', ['optimize', 'fonts', 'images'], function() {
     };
     del(config.temp);
     log(msg);
-    notify(msg);
+    // notify(msg);
 });
 
 gulp.task('build-specs', ['templatecache'], function() {
