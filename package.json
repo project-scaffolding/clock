@@ -58,5 +58,8 @@
     "sinon-chai": "^2.7.0",
     "wiredep": "^2.2.2",
     "yargs": "^3.9.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
   }
 }
