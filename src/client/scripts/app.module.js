@@ -10,6 +10,7 @@
 
             // 3-rd Part modules
             'toaster',
+            'timer',
 
             // Application Modules
             'clock.services',

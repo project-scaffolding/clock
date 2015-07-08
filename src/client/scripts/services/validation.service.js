@@ -11,9 +11,7 @@
 
         validate.Promise = $q;
 
-        return {
-            validate: validate.async
-        };
+        return validate;
     }
 
 }).call(this, angular, validate);

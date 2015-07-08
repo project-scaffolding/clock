@@ -1,9 +1,38 @@
+<!--TODO: move styles to css file-->
+<style type="text/css">
+    .disabled {
+        background: gray;
+    }
+    .timer-display {
+        height: 148px;
+    }
+    .timer-in-action {
+        text-align: center;
+        font-size: 60px;
+    }
+    .timer-start {
+        float: left;
+    }
+    .timer-cancel {
+        float: left;
+    }
+    .timer-pause {
+        float: right;
+    }
+    .timer-pause {
+        float: right;
+    }
+</style>
+
+<!--HEADER-->
 <div class="row header">
     <div class="col-xs-2"></div>
     <div class="col-xs-8 header-title"><strong>{{vm.title}}</strong></div>
     <div class="col-xs-2"></div>
 </div>
-<div class="row">
+
+<!--TIMER INPUTS-->
+<div class="row timer-display" ng-show="vm.timer.isNotStarted">
     <div class="form-group">
         <label for="hours">Hours</label>
         <input type="number" class="form-control" id="hours" ng-model="vm.timer.hours">
@@ -13,6 +42,24 @@
         <input type="minutes" class="form-control" id="minutes" ng-model="vm.timer.minutes">
     </div>
 </div>
+
+<!--TIMER IN ACTION-->
+<div class="row timer-display" ng-if="!vm.timer.isNotStarted">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4 timer-in-action">
+         <!--HH:MM:SS-->
+        <timer ng-if="vm.timer.hours > 0" interval="1000" countdown="vm.timer.countdown">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
+        <!--MM:SS-->
+        <timer ng-if="vm.timer.hours <= 0" interval="1000" countdown="vm.timer.countdown">{{mminutes}}:{{sseconds}}</timer>
+    </div>
+    <div class="col-xs-4"></div>
+</div>
+
+<audio id="timer-sound">
+    <source src="sounds/presto.mp3" type="audio/mp3">
+</audio>
+
+<!--TIMER SOUND-->
 <div class="row cursor-pointer" ng-click="vm.navigateToSounds()">
     <div class="col-xs-4">When Timer Ends</div>
     <div class="col-xs-7 align-right">Presto</div>
@@ -20,17 +67,21 @@
         <div><span class="glyphicon glyphicon-chevron-right"></span></div>
     </div>
 </div>
+
+<!--TIMER CONTROLLS: START/CANCEL/PAUSE/RESUME-->
 <div class="row">
-    <div class="col-xs-3"></div>
-    <div class="col-xs-6">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
         <div class="row">
             <div class="col-xs-6">
-                <button>Start</button>
+                <button ng-click="vm.startTimer()" ng-show="vm.timer.isNotStarted" class="timer-start">Start</button>
+                <button ng-click="vm.cancelTimer()" ng-show="vm.timer.isStarted || vm.timer.isPaused" class="timer-cancel">Cancel</button>
             </div>
             <div class="col-xs-6">
-                <button>Pause</button>
+                <button ng-click="vm.pauseTimer()" ng-show="vm.timer.isNotStarted || vm.timer.isStarted" ng-class="{'disabled': vm.timer.isNotStarted}" class="timer-pause">Pause</button>
+                <button ng-click="vm.resumeTimer()" ng-show="vm.timer.isPaused" class="timer-resume">Resume</button>
             </div>
         </div>
     </div>
-    <div class="col-xs-3"></div>
+    <div class="col-xs-4"></div>
 </div>
