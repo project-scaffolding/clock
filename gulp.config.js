@@ -130,6 +130,7 @@ module.exports = function() {
                 dir: report + 'coverage',
                 reporters: [
                     {type: 'html', subdir: 'report-html'},
+                    {type: 'lcov', subdir: 'lcov'},
                     {type: 'text-summary'}
                 ]
             },

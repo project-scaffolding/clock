@@ -1,0 +1,5 @@
+projectKey=DEMO
+serverUrl=http://192.168.99.100:9000
+dashboardUrl=http://192.168.99.100:9000/dashboard/index/DEMO
+ceTaskId=AVQQNwXKNOEu1Z5a5Ywn
+ceTaskUrl=http://192.168.99.100:9000/api/ce/task?id=AVQQNwXKNOEu1Z5a5Ywn

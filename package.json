@@ -10,6 +10,9 @@
     "serve-favicon": "^2.0.1",
     "mongoose": "^4.0.3"
   },
+  "scripts": {
+    "build": "gult test"
+  },
   "devDependencies": {
     "browser-sync": "^2.7.1",
     "chai": "^2.3.0",
